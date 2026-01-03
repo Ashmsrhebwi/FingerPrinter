@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🧭 NAVBAR */
+.navbar {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+  color: #194a64;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logout-btn {
+  background: #194a64;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  width: 150px;
+}
+
+.logout-btn:hover {
+  background: #194a64;
+}
+
+/* 🎉 المحتوى الرئيسي */
+.main-content {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.welcome {
+  font-size: 22px;
+  margin-bottom: 40px;
+  color: #222;
+}
+
+/* 🧱 الكاردات */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px 25px;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  text-align: center;
+}
+
+.badge-passive { background:#e74c3c; color:#fff; }
+ .user-badge {
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:6px;
+      margin-left:8px;
+      font-weight:bold;
+    }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  color: #194a64;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.card p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* 🟩 الأزرار داخل الكارد */
+button {
+  background: #194a64;
+  border: none;
+  color: #fff;
+  padding: 12px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #194a64;
+}
+.sun{
+  color: #fbff00;
+}
+button:active {
+  transform: scale(0.98);
+}
+
+/* 🔹 جعل كل الأزرار بنفس المستوى داخل الكارد */
+.cards-container .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cards-container button {
+  margin-top: auto;
+}
+
+/* ✨ الأقسام الداخلية */
+section {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin: 40px auto;
+  max-width: 900px;
+  width: 90%;
+}
+
+section h2 {
+  color: #194a64;
+  margin-bottom: 20px;
+}
+
+/* 📋 الجداول */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  font-size: 14px;
+}
+
+th {
+  background: #194a64;
+  color: #fff;
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #f8f8f8;
+}
+
+/* 📱 استجابة */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+}

@@ -1,0 +1,147 @@
+/* ✅ نموذج إضافة / تعديل مستخدم أو أدمن */
+.add-user-form {
+  background-color: #ffffff;
+  margin: 25px auto;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.3s ease;
+}
+
+.add-user-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #194a64;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.add-user-form .form-group {
+  margin-bottom: 18px;
+}
+
+.add-user-form label {
+  display: block;
+  font-weight: 600;
+  color: #194a64;
+  margin-bottom: 6px;
+}
+
+.add-user-form input,
+.add-user-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #c7c7c7;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #fdfdfd;
+}
+
+.add-user-form input:focus,
+.add-user-form select:focus {
+  border-color: #194a64;
+  box-shadow: 0 0 5px rgba(25, 74, 100, 0.3);
+  background-color: #ffffff;
+}
+
+/* ✅ أزرار داخل النموذج */
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.save-btn {
+  background-color: #194a64;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.save-btn:hover {
+  background-color: #13384b;
+}
+
+.cancel-btn {
+  background-color: #fff;
+  color: #194a64;
+  border: 1.5px solid #194a64;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 10px;
+  transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+  background-color: #194a64;
+  color: #fff;
+}
+
+/* ✅ أزرار تعديل وحذف في الجدول */
+.edit-btn {
+  background-color: #194a64;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.edit-btn:hover {
+  opacity: 0.85;
+}
+
+.delete-btn {
+  background-color: #fff;
+  border: 1.5px solid #e80c0c;
+  color: #e80c0c;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background-color: #e80c0c;
+  color: #fff;
+}
+
+/* ✨ حركة ظهور النموذج */
+.add-user-form.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.add-user-form.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 🧾 إشعارات */
+.notif {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  background: #194a64;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.4s ease, opacity 0.3s ease;
+  z-index: 9999;
+}
+
+.notif.show { right: 20px; }
+.notif.error { background: #c0392b; }

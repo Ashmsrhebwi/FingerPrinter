@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f7fa;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+/* 🧱 الحاوية الأساسية */
+.login-container {
+  background: #ffffff;
+  padding: 45px 40px;
+  border-radius: 16px;
+  width: 360px;
+  text-align: center;
+  color: #194a64;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  border-top: 5px solid #194a64;
+}
+
+/* عنوان الصفحة */
+.login-container h2 {
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #194a64;
+  font-size: 22px;
+}
+
+/* الحقول */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #194a64;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  outline: none;
+  margin-bottom: 18px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #194a64;
+  box-shadow: 0 0 6px rgba(25, 74, 100, 0.3);
+}
+
+/* زر الدخول */
+button {
+  width: 90%;
+  padding: 12px;
+  background-color: #194a64;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #13384b;
+  transform: translateY(-2px);
+}
+
+/* أيقونة المستخدم */
+.login-icon {
+  background-color: #194a64;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  color: white;
+  font-size: 26px;
+}
+
+/* رسالة الخطأ */
+#errorMsg {
+  color: #c0392b;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+/* تذييل الصفحة */
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 13px;
+  color: #777;
+}
+.footer a {
+  color: #194a64;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.input-form-ps{
+  width: 85%;
+  margin-bottom: 50px;
+}
+
+.input-form-user{
+  width: 85%;
+}
