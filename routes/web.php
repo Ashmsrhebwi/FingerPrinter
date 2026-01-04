@@ -28,9 +28,12 @@ Route::post('/fingerprint/register-complete', [FingerprintController::class, 're
 Route::post('/fingerprint/start-register', [FingerprintController::class, 'startRegister']);
 
 Route::get('/fingerprint/status', function () {
+    $register = cache()->get('finger_register', false);
+    $userId = cache()->get('finger_user_id');
+
     return response()->json([
-        'register' => cache()->get('finger_register', false),
-        'user_id'  => cache()->get('finger_user_id')
+        'register' => $register ? 1 : 0,
+        'user_id'  => (int)$userId
     ]);
 });
 

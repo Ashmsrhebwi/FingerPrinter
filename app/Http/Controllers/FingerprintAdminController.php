@@ -13,8 +13,9 @@ class FingerprintAdminController extends Controller
             'user_id' => 'required|integer'
         ]);
 
-        // نخزّن أن في تسجيل بصمة شغّال
-        Cache::put('fingerprint_register_user', $request->user_id, now()->addMinutes(5));
+        // نخزّن أن في تسجيل بصمة شغّال بالمفاتيح الصحيحة التي يبحث عنها ESP32
+        Cache::put('finger_register', true, now()->addMinutes(5));
+        Cache::put('finger_user_id', $request->user_id, now()->addMinutes(5));
 
         return response()->json([
             'ok' => true,

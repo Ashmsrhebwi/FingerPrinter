@@ -16,11 +16,13 @@ class FingerprintController extends Controller
             'user_id' => 'required|integer'
         ]);
 
-        cache()->put('finger_register', true);
-        cache()->put('finger_user_id', $request->user_id);
+        // حفظ في الـ cache لمدة 5 دقائق
+        cache()->put('finger_register', true, now()->addMinutes(5));
+        cache()->put('finger_user_id', $request->user_id, now()->addMinutes(5));
 
         return response()->json([
-            'message' => 'Parmak kaydı başlatıldı'
+            'ok' => true,
+            'message' => 'Parmak kaydı başlatıldı. Lütfen sensöre parmak koyun.'
         ]);
     }
 
@@ -38,6 +40,7 @@ public function registerComplete(Request $request)
 
     // إغلاق وضع التسجيل
     cache()->forget('finger_register');
+    cache()->forget('finger_user_id');
 
     return response()->json([
         'ok' => true,
@@ -73,28 +76,60 @@ public function registerComplete(Request $request)
             ], 404);
         }
 
-        // 🕒 تحديد دخول أو خروج
-        $today = Carbon::today();
+        // 🛑 التحقق من حالة المستخدم (Pasif)
+        if ($user->status === 'Pasif') {
+            return response()->json([
+                'ok' => false,
+                'message' => 'Account Deactivated',
+                'user' => $user->name
+            ], 403);
+        }
 
-        $last = Attendance::where('user_id', $user->id)
-            ->whereDate('date', $today)
-            ->latest()
+        // 🕒 تحديد دخول أو خروج
+        $today = Carbon::today()->toDateString();
+
+        $attendance = Attendance::where('user_id', $user->id)
+            ->where('date', $today)
             ->first();
 
-        $type = (!$last || $last->type === 'out') ? 'in' : 'out';
-
-        // 📝 تسجيل الحضور
-        Attendance::create([
-            'user_id' => $user->id,
-            'date'    => now()->toDateString(),
-            'time'    => now()->toTimeString(),
-            'type'    => $type,
-        ]);
+        if (!$attendance) {
+            // أول بصمة في اليوم -> تسجيل دخول
+            Attendance::create([
+                'user_id' => $user->id,
+                'date'    => $today,
+                'in_time' => now()->toTimeString(),
+                'status'  => 'Normal',
+            ]);
+            $type = 'in';
+            $message = "Welcome {$user->name}!";
+        } else {
+            // يوجد سجل سابق
+            if ($attendance->out_time) {
+                // إذا كان مسجل خروج مسبقاً، نمنع التكرار إلا لو مر 5 دقائق مثلاً (للأمان)
+                $lastOut = Carbon::parse($attendance->out_time);
+                if (now()->diffInMinutes($lastOut) < 5) {
+                    return response()->json([
+                        'ok'      => true, // نرسل true عشان الأردوينو ما يعطي Warning
+                        'message' => "Already Out, {$user->name}!",
+                        'user'    => $user->name,
+                        'type'    => 'none' 
+                    ]);
+                }
+            }
+            
+            // تسجيل خروج أو تحديث الخروج
+            $attendance->update([
+                'out_time' => now()->toTimeString(),
+            ]);
+            $type = 'out';
+            $message = "Good Bye {$user->name}!";
+        }
 
         return response()->json([
-            'ok' => true,
-            'user' => $user->name,
-            'type' => $type
+            'ok'      => true,
+            'message' => $message,
+            'user'    => $user->name,
+            'type'    => $type
         ], 201);
     }
     

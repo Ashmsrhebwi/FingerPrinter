@@ -97,14 +97,12 @@
           };
         @endphp
 
-        @if(!in_array($day,['Cumartesi','Pazar']))
         <tr>
           <td>{{ ucfirst($day) }} - {{ $item->date }}</td>
           <td>{{ $item->in_time ?? '-' }}</td>
           <td>{{ $item->out_time ?? '-' }}</td>
           <td class="{{ $cls }}">{{ $item->status }}</td>
         </tr>
-        @endif
       @endforeach
     </tbody>
   </table>

@@ -12,8 +12,9 @@ class Attendance extends Model
     protected $fillable = [
         'user_id',
         'date',
-        'time',
-        'type'
+        'in_time',
+        'out_time',
+        'status'
     ];
 
     // ✅ علاقة الحضور مع المستخدم
